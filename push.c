@@ -7,8 +7,9 @@
   */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
 	char *arg;
+	int value;
+	stack_t *new_node;
 
 	arg = strtok(NULL, " \n\t");
 	if (!arg || (!isdigit(*arg) && *arg != '-'))
@@ -17,6 +18,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
+	value = atoi(arg);
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
@@ -24,7 +26,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = atoi(arg);
+	new_node->n = value;
 	new_node->prev = NULL;
 	new_node->next = *stack;
 
