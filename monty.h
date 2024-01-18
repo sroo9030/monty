@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #define SIZE 100
 
+int stack[SIZE];
+int top = -1;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,6 +40,6 @@ typedef struct instruction_s
 
 /* Functions prototype*/
 void push(int value);
-void pall();
+void pall(void);
 
 #endif
