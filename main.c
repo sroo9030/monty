@@ -36,8 +36,7 @@ int main(int ac, char *av[])
 			cases(token, &stack, line_number);
 	}
 
+	free_stack(stack);
 	fclose(file);
-	if (line)
-		free(line);
 	exit(EXIT_SUCCESS);
 }

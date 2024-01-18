@@ -9,14 +9,26 @@
   */
 void cases(char *command, stack_t **stack, unsigned int line_number)
 {
-	if (strcmp(command, "push") == 0)
-		push(stack, line_number);
+	instruction_t instructions[] = {
+		{"push", push},
+		{"pall", pall},
+		{NULL, NULL}};
+	int i, found = 0;
 
-	else if (strcmp(command, "pall") == 0)
-		pall(stack, line_number);
-	else
+	for (i = 0; instructions[i].opcode; i++)
+	{
+		if (strcmp(command, instructions[i].opcode) == 0)
+		{
+			instructions[i].f(stack, line_number);
+			found = 1;
+			break;
+		}
+	}
+
+	if (!found)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, command);
 		exit(EXIT_FAILURE);
 	}
+
 }
