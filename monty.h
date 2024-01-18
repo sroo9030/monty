@@ -1,11 +1,12 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE 100
+#include <string.h>
+#include <ctype.h>
+#include <sys/types.h>
 
-int stack[SIZE];
-int top = -1;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -39,7 +40,7 @@ typedef struct instruction_s
 
 
 /* Functions prototype*/
-void push(int value);
-void pall(void);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 
 #endif
