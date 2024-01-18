@@ -10,9 +10,11 @@
 void cases(char *command, stack_t **stack, unsigned int line_number)
 {
 	instruction_t instructions[] = {
-		{"push", push},
-		{"pall", pall},
-		{NULL, NULL}};
+					{"push", _push},
+					{"pall", _pall},
+					{"pint", _pint},
+					{NULL, NULL}
+							};
 	int i, found = 0;
 
 	for (i = 0; instructions[i].opcode; i++)
@@ -28,6 +30,7 @@ void cases(char *command, stack_t **stack, unsigned int line_number)
 	if (!found)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, command);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 

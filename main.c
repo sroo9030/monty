@@ -4,7 +4,7 @@
   * main - Monty interpreter main function
   * @ac: Argument count
   * @av: Argument array
-  * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure
+  * Return: 0 on success
   */
 int main(int ac, char *av[])
 {
@@ -32,11 +32,13 @@ int main(int ac, char *av[])
 	{
 		line_number++;
 		token = strtok(line, " $\t\n");
+		if (!token || *token == '#')
+			continue;
 		if (token)
 			cases(token, &stack, line_number);
 	}
 
 	free_stack(stack);
 	fclose(file);
-	exit(EXIT_SUCCESS);
+	return (0);
 }
